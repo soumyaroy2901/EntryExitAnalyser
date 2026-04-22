@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swing Intel | Professional Trading Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dark-theme">
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo-area">
+                <div class="logo-icon">📈</div>
+                <h1>Swing Intel <span>Standalone</span></h1>
+            </div>
+            <div class="last-updated" id="last-updated">Status: Ready</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- New Scan Input Section -->
+        <section class="scan-input-section">
+            <div class="stat-card" style="display: flex; gap: 1rem; align-items: center; padding: 1.5rem;">
+                <input type="text" id="ticker-input" placeholder="Enter Tickers (e.g. RELIANCE, ONGC, IEX)..." style="flex-grow: 1; background: #0d1117; border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; color: white;">
+                <button id="run-scan-btn" class="filter-btn active" style="min-width: 150px; height: 50px;">Run Analysis</button>
+            </div>
+        </section>
+
+        <section class="summary-stats">
+            <div class="stat-card">
+                <div class="stat-label">Total Scanned</div>
+                <div class="stat-value" id="total-scanned">0</div>
+            </div>
+            <div class="stat-card highlight">
+                <div class="stat-label">Active Signals</div>
+                <div class="stat-value" id="active-signals">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">System Health</div>
+                <div class="stat-value" style="color: var(--accent-green); font-size: 1.5rem;">ONLINE</div>
+            </div>
+        </section>
+
+        <section class="control-bar">
+            <div class="search-box">
+                <input type="text" id="ticker-search" placeholder="Filter Results...">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active Only</button>
+                <div class="view-toggles">
+                    <button class="view-btn active" id="card-view-btn" title="Card View">🔲</button>
+                    <button class="view-btn" id="list-view-btn" title="List View">☰</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="ticker-grid" id="ticker-grid">
+            <!-- Results injected here -->
+            <div style="grid-column: 1/-1; text-align: center; padding: 5rem; color: var(--text-secondary);">
+                Enter tickers above to start the analysis.
+            </div>
+        </section>
+    </main>
+
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; flex-direction: column;">
+        <div class="logo-icon" style="animation: pulse 1s infinite alternate; font-size: 4rem;">📈</div>
+        <p style="margin-top: 1rem; color: var(--accent-blue); font-weight: 600;">Analyzing Market Data...</p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Swing Intel Systems. Independent Deployment.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <style>
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+    </style>
+</body>
+</html>
